@@ -15,82 +15,366 @@
     />
   </head>
   <body>
-    <h1>Vercel HTML Starter</h1>
-    <p>
-      This template is a simple, but powerful single
-      <code>index.html</code> file deployed to
-      <a href="https://vercel.com">Vercel</a>. When your site is deployed, all
-      static assets (like HTML, JavaScript, CSS, images, and more) are deployed
-      globally to every
-      <a href="https://vercel.com/docs/concepts/edge-network/overview"
-        >Vercel Edge Network</a
-      >
-      region.
-    </p>
-    <h2>Simple, privacy-friendly analytics</h2>
-    <p>
-      Want to understand your visitor traffic? Vercel Analytics gives you
-      first-party, privacy-friendly traffic analytics for your HTML site. This
-      template is already configured using the following script:
-    </p>
-    <pre><code>&lt;script defer src="/_vercel/insights/script.js"&gt;&lt;/script&gt;</code></pre>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/analytics">Vercel Analytics</a>.
-    </p>
-    <h2>Integrated with git</h2>
-    <p>
-      Deploying updates to your site is as simple as
-      <code>git push</code> thanks to Vercel's advanced
-      <a href="https://vercel.com/docs/concepts/git">Git Integration</a>.
-      Support for GitHub, GitLab, Bitbucket is zero-configuration, and with the
-      flexible Vercel CLI and API, you can integrate with any tool possible.
-    </p>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/git">Git Integration</a>.
-    </p>
-    <h2>Fast <code>gzip</code> compression</h2>
-    <p>
-      To help ensure the smallest possible file sizes for your static assets,
-      the Vercel Edge Network compresses files by default using
-      <code>gzip</code>. You can also optionally use
-      <code>brotli</code> compressesion if you prefer.
-    </p>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/edge-network/compression"
-        >compression</a
-      >.
-    </p>
-    <h2>Advanced routing configuration</h2>
-    <p>
-      Vercel gives you a variety of ways to configure the routing of your
-      website. For example, adding redirects, rewrites, or headers to your page.
-      While you can use <code>vercel.json</code> to define these through JSON,
-      you can also express your routing configuration as code using
-      <a href="https://vercel.com/docs/concepts/functions/edge-middleware"
-        >Vercel Edge Middleware</a
-      >.
-    </p>
-    <p>
-      Middleware runs before the
-      <a href="https://vercel.com/docs/concepts/edge-network/caching"
-        >Vercel Edge Network Cache</a
-      >, so you can configure routing exactly as your application needs. For
-      example, this template uses <code>middleware.js</code> defined in the root
-      of the repository to add additional security headers to the site:
-    </p>
-    <pre><code>referrer-policy: origin-when-cross-origin
-strict-transport-security: max-age=31536000; includeSubDomains; preload
-x-content-type-options: nosniff
-x-dns-prefetch-control: on
-x-frame-options: DENY</code></pre>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/functions/edge-middleware"
-        >Vercel Edge Middleware</a
-      >.
-    </p>
+    <h1>Kenya SCD Hub</h1>
+
+
+<!-- quick fix to load assets from github -->
+
+<style>
+
+	@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+}
+
+:root {
+  --light: #ffe6e6;
+  --dark: #0c0c0c;
+}
+
+.container {
+  --bg-color: radial-gradient(
+  	circle at 50% 0%,
+  	rgba(50, 50, 50, 1) 0%,
+  	rgba(12, 12, 12, 1) 100%
+  );
+  overflow: clip;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 5rem;
+  width: 100%;
+  height: 100dvh;
+  background-image: var(--bg-color);
+}
+
+.category_container {
+  --gap: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: calc(var(--gap) * 2);
+  width: 100%;
+  height: 100%;
+}
+
+.content {
+  --active: 0;
+  cursor: pointer;
+  overflow: clip;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 1.5rem;
+  padding: 2.5rem;
+  width: calc((100% / 3) - var(--gap));
+  height: 100%;
+  border-radius: 1rem;
+  transition: width 0.5s ease-in-out;
+}
+
+.content:hover {
+  --active: 1;
+  width: calc(70% - var(--gap));
+}
+
+.content::before {
+  content: "";
+  position: absolute;
+  z-index: -10;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--dark);
+  opacity: 0.6;
+}
+
+.content img {
+  position: absolute;
+  z-index: -20;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+
+.content .profile_image {
+  opacity: calc(1 - var(--active));
+  transition: opacity 0.3s ease-in-out;
+}
+
+.profile_detail {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 12rem;
+  transition: transform 0.5s cubic-bezier(0.23, 0.93, 0.77, 1) 0.01s;
+}
+
+.profile_detail span {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--light);
+  text-wrap: nowrap;
+}
+
+.profile_detail p {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--light);
+}
+
+.profile_quote {
+  width: 22rem;
+  transform: translate(0, calc((1 - var(--active)) * (100% + 2.5rem)));
+}
+
+.profile_quote p {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--light);
+  transform: translate(0, calc((1 - var(--active)) * (100% + 2.5rem)));
+  transition: transform 0.5s cubic-bezier(0.23, 0.93, 0.77, 1) 0.1s;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-rows: 0fr;
+  overflow: hidden;
+  transition: grid-template-rows 0.5s cubic-bezier(0.23, 0.93, 0.77, 1) 0.01s;
+  transition: grid-template-rows 0.5s cubic-bezier(0.23, 0.93, 0.77, 1) 0.01s, -ms-grid-rows 0.5s cubic-bezier(0.23, 0.93, 0.77, 1) 0.01s;
+}
+
+.profile_quote {
+  min-height: 0;
+  transform: translateY(50%);
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out, transform 0.8s cubic-bezier(0.23, 0.93, 0.77, 1) 0.01s;
+}
+
+.content:hover .wrapper {
+  grid-template-rows: 1fr;
+}
+
+.content:hover .profile_quote {
+  transform: none;
+  opacity: 1;
+}
+
+dialog {
+  position: absolute;
+  z-index: 1;
+  background: none;
+  color: white;
+  border: 0;
+  font-size: 0.8rem;
+  padding: 0.5em;
+}
+
+dialog a {
+  color: whitesmoke;
+}
+	
+</style>
+
+<base href="https://rawcdn.githack.com/MuhammadHasann/component-frontend/7e3a0bced6f1b050e8d0b621f2a3a6e7b1cb06d3/section/category%20card-2/" />
+<!-- lazy dog credit note -->
+
+
+
+    
+    <section class="container">
+    	<div class="category_container">
+    		<div class="content">
+    			<img src="assets/UI UX Designer.jpg" class="professio_image" alt="Profession" />
+    			<img src="assets/John Doe.jpg" class="profile_image" alt="Profile" />
+    			<div class="profile_detail">
+    				<span>John Doe</span>
+    				<p>UI/UX Designer + Graphic Designer</p>
+    			</div>
+    
+    			<div class="wrapper">			
+    				<div class="profile_quote">
+    					<p>"UI is the saddle, the stirrups, & the reins. UX is the feeling you get being able to ride the horse."</p>
+    				</div>
+    			</div>
+    
+    		</div>
+    		<div class="content">
+    			<img src="assets/Photographer.jpg" class="profession_image" alt="Profession" />
+    			<img src="assets/Prince Akashi.jpg" class="profile_image" alt="Profile" />
+    			<div class="profile_detail">
+    				<span>Renewable Energy Transition</span>
+    				<p>Shift towards renewable energy</p>
+    			</div>
+    			<div class="wrapper">				
+    				<div class="profile_quote">
+    					<p>Sources such as solar, wind, and geothermal. This reduces reliance on fossil fuels, lowers greenhouse gas emissions, and can be particularly effective in Kenya, which has abundant renewable resources.</p>
+    				</div>
+    			</div>
+    		</div>
+    		<div class="content">
+    			<img src="assets/Fashion Designer.jpg" class="profession_image" alt="Profession" />
+    			<img src="assets/Rafaella Mendes.jpg" class="profile_image" alt="Profile" />
+    			<div class="profile_detail">
+    				<span>Afforestation and Reforestation</span>
+    				<p>Planting trees and restoring forests</p>
+    			</div>
+    			<div class="wrapper">				
+    				<div class="profile_quote">
+    					<p>..can sequester carbon dioxide, enhance biodiversity, and stabilize local climates. Initiatives could include community tree-planting drives and rehabilitation of degraded lands.</p>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    </section>
+    
+    
+    <section class="container">
+    	<div class="category_container">
+    		<div class="content">
+    			<img src="assets/UI UX Designer.jpg" class="professio_image" alt="Profession" />
+    			<img src="assets/John Doe.jpg" class="profile_image" alt="Profile" />
+    			<div class="profile_detail">
+    				<span>Sustainable Agriculture</span>
+    			</div>
+    
+    			<div class="wrapper">			
+    				<div class="profile_quote">
+    					<p>"Promote agricultural practices that increase productivity while being environmentally friendly. Techniques such as agroforestry, conservation tillage, and organic farming can improve soil health and reduce emissions."</p>
+    				</div>
+    			</div>
+    
+    		</div>
+    		<div class="content">
+    			<img src="assets/Photographer.jpg" class="profession_image" alt="Profession" />
+    			<img src="assets/Prince Akashi.jpg" class="profile_image" alt="Profile" />
+    			<div class="profile_detail">
+    				<span>Water Conservation</span>
+    				<p>Implement water-saving techniques </p>
+    			</div>
+    			<div class="wrapper">				
+    				<div class="profile_quote">
+    					<p>"..to ensure efficient use of water resources. Rainwater harvesting, drip irrigation, and wastewater treatment can play a significant role in water management."</p>
+    				</div>
+    			</div>
+    		</div>
+    		<div class="content">
+    			<img src="assets/Fashion Designer.jpg" class="profession_image" alt="Profession" />
+    			<img src="assets/Rafaella Mendes.jpg" class="profile_image" alt="Profile" />
+    			<div class="profile_detail">
+    				<span>Waste Reduction and Recycling</span>
+    				<p>recycling programs, composting, and sustainable packaging</p>
+    			</div>
+    			<div class="wrapper">				
+    				<div class="profile_quote">
+    					<p>"Encourage waste reduction through recycling programs, composting, and sustainable packaging. This helps to lower the amount of waste in landfills, which are a significant source of methane emissions."</p>
+    				</div>
+    			</div>
+    		</div>
+
+        
+    	</div>
+    </section>
+
+
+        
+    <section class="container">
+    	<div class="category_container">
+    		<div class="content">
+    			<img src="assets/UI UX Designer.jpg" class="professio_image" alt="Profession" />
+    			<img src="assets/John Doe.jpg" class="profile_image" alt="Profile" />
+    			<div class="profile_detail">
+    				<span>Green Infrastructure</span>
+    			</div>
+    
+    			<div class="wrapper">			
+    				<div class="profile_quote">
+    					<p>"Develop infrastructure that is energy-efficient and environmentally sustainable. Green buildings, eco-friendly transportation networks, and smart city designs can reduce the carbon footprint of urban areas."</p>
+    				</div>
+    			</div>
+    
+    		</div>
+    		<div class="content">
+    			<img src="assets/Photographer.jpg" class="profession_image" alt="Profession" />
+    			<img src="assets/Prince Akashi.jpg" class="profile_image" alt="Profile" />
+    			<div class="profile_detail">
+    				<span>Climate Education and Awareness</span>
+    			</div>
+    			<div class="wrapper">				
+    				<div class="profile_quote">
+    					<p>"..Educate communities about the impacts of climate change and the importance of sustainability. Knowledge empowers individuals to make informed decisions and advocate for policy changes."</p>
+    				</div>
+    			</div>
+    		</div>
+    		<div class="content">
+    			<img src="assets/Fashion Designer.jpg" class="profession_image" alt="Profession" />
+    			<img src="assets/Rafaella Mendes.jpg" class="profile_image" alt="Profile" />
+    			<div class="profile_detail">
+    				<span>Policy Advocacy</span>
+    			</div>
+    			<div class="wrapper">				
+    				<div class="profile_quote">
+    					<p>"Work with local and national governments to advocate for policies that support climate action. This includes regulations on emissions, incentives for green technology, and support for climate resilience in vulnerable communities."</p>
+    				</div>
+    			</div>
+    		</div>
+
+        
+    	</div>
+    </section>
+
+
+    <section class="container">
+    	<div class="category_container">
+    		<div class="content">
+    			<img src="assets/UI UX Designer.jpg" class="professio_image" alt="Profession" />
+    			<img src="assets/John Doe.jpg" class="profile_image" alt="Profile" />
+    			<div class="profile_detail">
+    				<span>Community Health Initiatives</span>
+    			</div>
+    
+    			<div class="wrapper">			
+    				<div class="profile_quote">
+    					<p>"Address the health impacts of climate change by improving access to healthcare, promoting disease prevention, and ensuring communities are prepared for climate-related health challenges.."</p>
+    				</div>
+    			</div>
+    
+    		</div>
+    		<div class="content">
+    			<img src="assets/Photographer.jpg" class="profession_image" alt="Profession" />
+    			<img src="assets/Prince Akashi.jpg" class="profile_image" alt="Profile" />
+    			<div class="profile_detail">
+    				<span>International Collaboration</span>
+    			</div>
+    			<div class="wrapper">				
+    				<div class="profile_quote">
+    					<p>"..Partner with global organizations to share knowledge, resources, and best practices. International cooperation can accelerate progress and provide support for climate adaptation and mitigation efforts.."</p>
+    				</div>
+    			</div>
+    		</div>
+    	
+        
+    	</div>
+    </section>
+
+
+    
+      
   </body>
 </html>
